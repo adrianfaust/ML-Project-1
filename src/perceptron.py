@@ -1,6 +1,4 @@
 import numpy as np
-
-
 class Perceptron:
     """Perceptron classifier.
     Parameters
@@ -45,14 +43,13 @@ class Perceptron:
         self.errors_ = []
         for _ in range(self.n_iter):
             errors = 0
-        for xi, target in zip(X, y):
-            update = self.eta * (target - self.predict(xi))
-        self.w_ += update * xi
-        self.b_ += update
-        errors += int(update != 0.0)
-        self.errors_.append(errors)
+            for xi, target in zip(X, y):
+                update = self.eta * (target - self.predict(xi))
+                self.w_ += update * xi
+                self.b_ += update
+                errors += int(update != 0.0)
+            self.errors_.append(errors)
         return self
-
     def net_input(self, X):
         """Calculate net input"""
         return np.dot(X, self.w_) + self.b_
