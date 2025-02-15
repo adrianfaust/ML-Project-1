@@ -39,6 +39,7 @@ plt.plot(range(1, len(ppn.errors_) + 1), ppn.errors_, marker='o')
 plt.xlabel('Epochs')
 plt.ylabel('Number of updates')
 plt.title('Perceptron')
+plt.ylim(bottom=0)
 plt.show()
 
 ppn_absorbed = PerceptronAbsorbedBias()
@@ -47,6 +48,7 @@ plt.plot(range(1, len(ppn.errors_) + 1), ppn.errors_, marker='o')
 plt.xlabel('Epochs')
 plt.ylabel('Number of updates')
 plt.title('Perceptron Absorbed Bias')
+plt.ylim(bottom=0)
 plt.show()
 
 ppa = adeline()
@@ -55,6 +57,7 @@ plt.plot(range(1, len(ppa.losses_) + 1), ppa.losses_, marker='x')
 plt.xlabel('Epochs')
 plt.ylabel('Mean squared Error')
 plt.title('Adeline')
+plt.ylim(bottom=0)
 plt.show()
 
 def plot_decision_regions_3d(X, y, classifier, resolution=0.02, show_after=False):
