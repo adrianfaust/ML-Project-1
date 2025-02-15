@@ -42,14 +42,16 @@ class PerceptronAbsorbedBias:
         for _ in range(self.n_iter):
             errors = 0
             for xi, target in zip(X, y):
-                update = self.eta * (target - self.predict(xi))
+                update = self.eta * (target - self.predict(xi, add_bias_absorption=False))
                 self.w_ += update * xi
                 errors += int(update != 0.0)
             self.errors_.append(errors)
         return self
-    def net_input(self, X):
+    def net_input(self, X, add_bias_absorption=True):
         """Calculate net input"""
         return np.dot(X, self.w_)
-    def predict(self, X):
+    def predict(self, X, add_bias_absorption=True):
         """Return class label after unit step"""
+        if add_bias_absorption:
+            X = np.c_[X, np.ones((X.shape[0], 1))]
         return np.where(self.net_input(X) >= 0.0, 1, 0)
