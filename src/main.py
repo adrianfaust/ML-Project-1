@@ -7,7 +7,7 @@ from src.adeline import adeline
 from src.perceptron import Perceptron
 
 df = pd.read_csv(
-    'https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data',
+    '../iris.data',
     header=None, encoding='utf-8')
 # select setosa and versicolor
 y = df.iloc[0:100, 4].values
@@ -45,6 +45,7 @@ plt.xlabel('Epochs')
 plt.ylabel('Mean squared Error')
 plt.show()
 
+
 def plot_decision_regions(X, y, classifier, resolution=0.02):
     # setup marker generator and color map
     markers = ('o', 's',
@@ -72,3 +73,5 @@ def plot_decision_regions(X, y, classifier, resolution=0.02):
                     label=f'Class {cl}'
                     ,
                     edgecolor='black')
+    plt.show()
+plot_decision_regions(X, y, ppn)
