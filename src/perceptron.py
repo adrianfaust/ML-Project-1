@@ -49,6 +49,7 @@ class Perceptron:
                 self.b_ += update
                 errors += int(update != 0.0)
             self.errors_.append(errors)
+
         return self
     def net_input(self, X):
         """Calculate net input"""

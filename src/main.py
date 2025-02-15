@@ -6,6 +6,7 @@ from matplotlib.colors import ListedColormap
 from src.adeline import adeline
 from src.perceptron import Perceptron
 from src.perceptron_absorbed_bias import PerceptronAbsorbedBias
+from src.AdelineSGD import AdalineSGD
 
 df = pd.read_csv(
     '../iris.data',
@@ -16,7 +17,7 @@ y = df.iloc[0:100, 4].values
 y = np.where(y == 'Iris-setosa', 0, 1)
 # extract sepal length and petal length
 
-X = df.iloc[0:100, [0, 1, 2, 3]].values
+X = df.iloc[0:100, [0,1,2,3]].values
 print(X)
 
 # plot data
@@ -60,6 +61,16 @@ plt.title('Adeline')
 plt.ylim(bottom=0)
 plt.show()
 
+pps = AdalineSGD();
+pps.fit_mini_batch_SGD(X, y)
+#pps.fit(X, y)
+plt.plot(range(1, len(pps.losses_) + 1), pps.losses_,
+            marker='o')
+print(pps.losses_)
+plt.xlabel('Epochs')
+plt.ylabel('Average loss')
+plt.tight_layout()
+plt.show()
 
 def plot_decision_regions_3d(X, y, classifier, resolution=0.02, show_after=False):
     """Plots the decision regions for 3D data.
