@@ -46,7 +46,7 @@ plt.ylabel('Mean squared Error')
 plt.show()
 
 
-def plot_decision_regions(X, y, classifier, resolution=0.02):
+def plot_decision_regions(X, y, classifier, resolution=0.02, show_after=False):
     # setup marker generator and color map
     markers = ('o', 's',
                '^'
@@ -73,5 +73,9 @@ def plot_decision_regions(X, y, classifier, resolution=0.02):
                     label=f'Class {cl}'
                     ,
                     edgecolor='black')
-    plt.show()
+    if show_after:
+        plt.show()
+
 plot_decision_regions(X, y, ppn)
+plot_decision_regions(X, y, ppa)
+plt.show()
