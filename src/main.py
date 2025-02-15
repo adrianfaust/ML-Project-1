@@ -16,7 +16,7 @@ y = df.iloc[0:100, 4].values
 y = np.where(y == 'Iris-setosa', 0, 1)
 # extract sepal length and petal length
 
-X = df.iloc[0:100, [0, 1, 2,3]].values
+X = df.iloc[0:100, [0, 1, 2, 3]].values
 print(X)
 
 # plot data
@@ -43,8 +43,8 @@ plt.ylim(bottom=0)
 plt.show()
 
 ppn_absorbed = PerceptronAbsorbedBias()
-ppn.fit(X, y)
-plt.plot(range(1, len(ppn.errors_) + 1), ppn.errors_, marker='o')
+ppn_absorbed.fit(X, y)
+plt.plot(range(1, len(ppn_absorbed.errors_) + 1), ppn_absorbed.errors_, marker='o')
 plt.xlabel('Epochs')
 plt.ylabel('Number of updates')
 plt.title('Perceptron Absorbed Bias')
@@ -59,6 +59,7 @@ plt.ylabel('Mean squared Error')
 plt.title('Adeline')
 plt.ylim(bottom=0)
 plt.show()
+
 
 def plot_decision_regions_3d(X, y, classifier, resolution=0.02, show_after=False):
     """Plots the decision regions for 3D data.
@@ -81,8 +82,8 @@ def plot_decision_regions_3d(X, y, classifier, resolution=0.02, show_after=False
     x3_min, x3_max = X[:, 2].min() - 1, X[:, 2].max() + 1  # Add z-axis limits
 
     xx1, xx2, xx3 = np.meshgrid(np.arange(x1_min, x1_max, resolution),
-                                 np.arange(x2_min, x2_max, resolution),
-                                 np.arange(x3_min, x3_max, resolution))
+                                np.arange(x2_min, x2_max, resolution),
+                                np.arange(x3_min, x3_max, resolution))
 
     # Predict on the meshgrid
     lab = classifier.predict(np.array([xx1.ravel(), xx2.ravel(), xx3.ravel()]).T)  # Include z
@@ -93,7 +94,7 @@ def plot_decision_regions_3d(X, y, classifier, resolution=0.02, show_after=False
     ax = fig.add_subplot(111, projection='3d')
 
     # Plot the decision surface (using a scatter plot for 3D)
-    ax.scatter(xx1.ravel(), xx2.ravel(), xx3.ravel(), c=lab.ravel(), alpha=0.2, cmap=cmap) # Alpha for transparency
+    ax.scatter(xx1.ravel(), xx2.ravel(), xx3.ravel(), c=lab.ravel(), alpha=0.2, cmap=cmap)  # Alpha for transparency
 
     # Plot the data points
     for idx, cl in enumerate(np.unique(y)):
