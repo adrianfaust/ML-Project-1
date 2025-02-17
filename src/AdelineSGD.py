@@ -94,8 +94,8 @@ class AdalineSGD:
                 X_batch = X[i:i+self.batch_size]
                 y_batch = y[i:i+self.batch_size]
 
-            for xi, target in zip(X_batch, y_batch):
-                losses.append(self._update_weights(xi, target))
+                for xi, target in zip(X_batch, y_batch):
+                    losses.append(self._update_weights(xi, target))
 
             avg_loss = np.mean(losses)
             self.losses_.append(avg_loss)
