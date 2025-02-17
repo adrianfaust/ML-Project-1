@@ -47,7 +47,7 @@ class PerceptronAbsorbedBias:
                 errors += int(update != 0.0)
             self.errors_.append(errors)
         return self
-    def net_input(self, X, add_bias_absorption=True):
+    def net_input(self, X):
         """Calculate net input"""
         return np.dot(X, self.w_)
     def predict(self, X, add_bias_absorption=True):
