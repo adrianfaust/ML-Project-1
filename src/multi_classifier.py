@@ -8,7 +8,7 @@ df = pd.read_csv(
     '../iris.data',
     header=None, encoding='utf-8')
 y = df.iloc[0:150, 4].values
-X = df.iloc[0:150, [0, 1, 2 ,3]].values
+X = df.iloc[0:150, [0, 1, 2, 3]].values
 
 
 def train(classifier, X, y, plot=True, title="Training"):
@@ -20,6 +20,7 @@ def train(classifier, X, y, plot=True, title="Training"):
         plt.title(title)
         plt.ylim(bottom=0)
         plt.show()
+
 
 # NOTE: Switched classifications to 1/0 for easier readability.
 setosa_classifier = PerceptronAbsorbedBias()
@@ -42,15 +43,16 @@ NOTE: As we can see Setosa can be classified well, but not virginica/versicolor.
 The virginica_classifier performs slightly better so we will use that.
 '''
 
+
 def multi_perceptron_classify(X, setosa_classifier, virginica_classifier):
     n = X.shape[0]
     labels = [""] * n
 
-    # "Iris-setosa" or not prediction set.
+    # "Iris-setosa" or not prediction.
     setosa_predictions = setosa_classifier.predict(X)
     for i in range(n):
-      if setosa_predictions[i] == 1:
-        labels[i] = "Iris-setosa"
+        if setosa_predictions[i] == 1:
+            labels[i] = "Iris-setosa"
 
     # Filter previously classified samples
     remaining_indices = np.where(setosa_predictions == 0)[0]
@@ -68,6 +70,7 @@ def multi_perceptron_classify(X, setosa_classifier, virginica_classifier):
 
     return labels
 
+
 def get_prediction_accuracy(predicted_labels, ground_truth, print_misclassified=False):
     comparison_results = []
     correct_count = 0
@@ -79,5 +82,7 @@ def get_prediction_accuracy(predicted_labels, ground_truth, print_misclassified=
                 print(f"predicted_labels[{i}] : {predicted_labels[i]}, truth: {ground_truth[i]}")
 
     return correct_count / len(ground_truth)
-predicted_labels =multi_perceptron_classify(X, setosa_classifier, virginica_classifier)
+
+
+predicted_labels = multi_perceptron_classify(X, setosa_classifier, virginica_classifier)
 print(f"Accuracy of Multi-Perceptron Classification: {get_prediction_accuracy(predicted_labels, y)}")
